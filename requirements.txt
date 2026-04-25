@@ -1,0 +1,17 @@
+langchain
+langchain-openai
+langchain-core
+langchain-community
+langchain-text-splitters
+langgraph
+langchain_community
+langchain_text_splitters
+langchain_google_genai
+python_dotenv
+tavily
+
+# Development & Testing
+pytest
+pytest-cov
+black # Code formatting
+flake8 # Linting
