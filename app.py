@@ -7,19 +7,33 @@ load_dotenv()
 model_openai = ChatOpenAI(model="gpt-4.1-nano",seed=6)
 model_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash",seed=6)
 
-#resp1 = model_openai.invoke("We are building an AI system for processing medical insurance claims.")
+print("PART 1: NAIVE STRING-BASED INVOCATION (no shared context)")
 
-#resp2 = model_openai.invoke("What are the main risks in this system?")
+resp1 = model_openai.invoke(
+    "We are building an AI system for processing medical insurance claims."
+)
+print("\n--- Response 1 ---")
+print(resp1.content)
+
+resp2 = model_openai.invoke("What are the main risks in this system?")
+print("\n--- Response 2 (no memory of the previous turn) ---")
+print(resp2.content)
+
+print("PART 2: MESSAGES API (full conversation context preserved)")
 
 messages = [
-    SystemMessage(content="You are a senior AI architect reviewing production systems."),
-    HumanMessage(content="We are building an AI system for processing medical insurance claims."),
-    HumanMessage(content="What are the main risks in this system?")
+    SystemMessage(
+        content="You are a senior AI architect reviewing production systems."
+    ),
+    HumanMessage(
+        content="We are building an AI system for processing medical insurance claims."
+    ),
+    HumanMessage(content="What are the main risks in this system?"),
 ]
 
-messages = model_openai.invoke(messages)
-
-print(f"OpenAI response 1: {messages}")
+resp3 = model_openai.invoke(messages)
+print("\n--- Response (with full context) ---")
+print(resp3.content)
 
 """
 Reflection:
