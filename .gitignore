@@ -3,6 +3,9 @@
 /.env
 .env
 /env/
-__pycache__/
-*.pyc
-/__pycache__/
+dist/
+build/
+.vscode/
+.idea/
+*.swp
+*.swo
